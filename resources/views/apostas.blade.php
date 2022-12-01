@@ -62,10 +62,10 @@
                         </div>
                     </div>
                     <p class="titulo fs-4 mb-1 text-center fw-bold light-text">Minhas Apostas</p>
-                    <div id="minhas-apostas" class="row">
+                    <div id="minhas-apostas" class="row p-3">
                         @forelse ($apostas as $aposta)
-                            <div class="col-12 mb-3">
-                                <div class="card p-3">
+                            <div class="col-12">
+                                <div class="card p-3 mb-3">
                                     <div class=" d-flex justify-content-evenly align-items-center h-100">
                                         <div class="time d-flex flex-column align-items-center">
                                             <img src='{{ url('assets/img/bandeiras/') . '/' . $aposta->jogo->bandeira_1 }}'
@@ -91,10 +91,21 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-8">
-                    <div class="row">
+                    <div class="row p-3">
+                        @if ($errors->all())
+                            @foreach ($errors->all() as $message)
+                                <div class="col-12">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                         @foreach ($jogos as $jogo)
                             <div class="col-12">
-                                <div class="card p-3 m-3">
+                                <div class="card p-3 mb-3">
                                     <form action="{{ route('apostas.store') }}" method="POST">
                                         <div class="card-body d-flex flex-column justify-content-center">
                                             @csrf
@@ -123,6 +134,11 @@
                                 </div>
                             </div>
                         @endforeach
+                        <div class="row">
+                            <div class="col-12">
+                                {{$jogos->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

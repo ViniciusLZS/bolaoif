@@ -6,6 +6,7 @@ use App\Models\Aposta;
 use Illuminate\Http\Request;
 use App\Models\Jogo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ApostaController extends Controller
 {
@@ -16,7 +17,7 @@ class ApostaController extends Controller
      */
     public function index()
     {
-        $jogos = Jogo::all();
+        $jogos = Jogo::paginate(4);
         $apostas = Aposta::where('user_id', Auth::user()->id)->orderBy("updated_at", "desc")->get();
         return view('apostas', ["jogos" => $jogos, "apostas" => $apostas]);
     }
@@ -39,6 +40,14 @@ class ApostaController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), [
+            'palpite_1' => 'required|numeric',
+            'palpite_2' => 'required|numeric',
+        ],
+        [
+            'required' => 'O campo :attribute é obrigatório.',
+        ])->validate();
+
         $aposta = Aposta::where("jogo_id", $request->id)->where("user_id", Auth::user()->id)->first();
         if ($aposta) {
             $aposta->palpite_1 = $request->palpite_1;
