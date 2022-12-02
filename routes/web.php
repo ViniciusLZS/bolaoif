@@ -16,7 +16,8 @@ use App\Http\Controllers\ApostaController;
 |
 */
 
-Route::resource('apostas', ApostaController::class);
+Route::post('/apostas/update', [ApostaController::class, 'update'])->name('apostas.update')->middleware('auth');
+Route::resource('apostas', ApostaController::class)->except(['update']);
 Route::get('/apostas', [ApostaController::class, 'index'])->name('apostas')->middleware('auth');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

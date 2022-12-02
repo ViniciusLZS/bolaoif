@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aposta;
 use Illuminate\Http\Request;
 use App\Models\Jogo;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -40,27 +41,39 @@ class ApostaController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
-            'palpite_1' => 'required|numeric',
-            'palpite_2' => 'required|numeric',
-        ],
-        [
-            'required' => 'O campo :attribute é obrigatório.',
-        ])->validate();
+        Validator::make(
+            $request->all(),
+            [
+                'palpite_1' => 'required|numeric',
+                'palpite_2' => 'required|numeric',
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório.',
+            ]
+        )->validate();
 
         $aposta = Aposta::where("jogo_id", $request->id)->where("user_id", Auth::user()->id)->first();
         if ($aposta) {
             $aposta->palpite_1 = $request->palpite_1;
             $aposta->palpite_2 = $request->palpite_2;
+            $aposta->save();
         } else {
+            if (Auth::user()->credito < intval(env('VALOR_APOSTA')))
+                return back()->withErrors(["msg" => "Você não possui créditos o suficiente"]);
+
             $aposta = new Aposta();
             $aposta->user_id = Auth::user()->id;
             $aposta->jogo_id = $request->id;
             $aposta->palpite_1 = $request->palpite_1;
             $aposta->palpite_2 = $request->palpite_2;
+            $aposta->save();
+            if ($aposta) {
+                $user = User::find(Auth::user()->id);
+                $user->credito = $user->credito - intval(env('VALOR_APOSTA'));
+                $user->save();
+            }
         }
 
-        $aposta->save();
 
         return back()->with("sucess", "Aposta realizada com sucesso");
     }
@@ -94,9 +107,23 @@ class ApostaController extends Controller
      * @param  \App\Models\Aposta  $aposta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Aposta $aposta)
+    public function update(Request $request)
     {
-        //
+        Validator::make(
+            $request->all(),
+            [
+                'palpite_1' => 'required|numeric',
+                'palpite_2' => 'required|numeric',
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório.',
+            ]
+        )->validate();
+        $aposta = Aposta::find($request->id);
+        $aposta->palpite_1 = $request->palpite_1;
+        $aposta->palpite_2 = $request->palpite_2;
+        $aposta->save();
+        return back()->with("sucess", "Aposta atualizada com sucesso");
     }
 
     /**
@@ -107,6 +134,7 @@ class ApostaController extends Controller
      */
     public function destroy(Aposta $aposta)
     {
-        //
+        $aposta->delete();
+        return back()->with("sucess", "Aposta removida com sucesso");
     }
 }

@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     /**
+     * Get the post that owns the comment.
+     */
+    public function apostas()
+    {
+        return $this->hasMany(Aposta::class);
+    }
 }

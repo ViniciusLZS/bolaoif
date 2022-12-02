@@ -17,4 +17,12 @@ class Aposta extends Model
     {
         return $this->belongsTo(Jogo::class);
     }
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
