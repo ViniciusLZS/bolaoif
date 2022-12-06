@@ -40,5 +40,4 @@ Route::get('/listarUsuario', [ListaUsuarioController::class, 'index'])->name
 
 Route::post('/listaUsuario/update', [ListaUsuarioController::class, 'update'])->name('listaUsuario.update')->middleware('auth');
 
-// Route::delete('/listaUsuario/{id}'[ListaUsuarioController::class], 'destroy');
 Route::resource('listaUsuario', ListaUsuarioController::class)->except(['update']);

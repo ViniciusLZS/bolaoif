@@ -94,9 +94,9 @@ class ListaUsuarioController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
-        return back()->with("sucess", "Usuario removida com sucesso");
+        User::destroy($id);
+        return back()->with("sucess", "Usuario removido com sucesso");
     }
 }

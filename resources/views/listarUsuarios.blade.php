@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('css')
-    <link rel="stylesheet" href="{{ url('assets/css/adicionarUsuario.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/listaUsuarios.css') }}">
 @endsection
 
 @section('title', 'Lista de usuários')
@@ -46,22 +46,23 @@
             </tr>
           </thead>
           @foreach ($usuarios as $usuario)
-              <tbody>
-                <tr class="text-center">
+              <tbody >
+                <tr class="text-center ">
                   <th scope="row">{{ $usuario->id }}</th>
                   <td>{{ $usuario->nome }}</td>
                   <td>{{ $usuario->email }}</td>
                   <td>{{ $usuario->email }}</td>
                   <td>{{ $usuario->created_at }}</td>
 
-                  <td><a href="#" onclick="editar_aposta({{ $usuario }})"title="editar"><i class="bi bi-pencil-square"></i></a></td>
+                  <td class="align-middle"><a href="#" onclick="editar_aposta({{ $usuario }})"title="editar"><i class="bi bi-pencil-square"></i></a></td>
 
-                  <td>
-                    <form id="form-deletar" action="{{route('listaUsuario.destroy', [$usuario->id])}}" method="post">
+                  <td class="align-middle">
+                    <form class="d-flex justify-content-center" id="form-deletar" action="{{route('listaUsuario.destroy', $usuario->id)}}" method="POST">
                       @csrf
-                      @method('delete')
-                      <a href="javascript:{}" onclick="document.getElementById('form-deletar').submit();" title="deletar"><i class="bi bi-trash"></i></a>
-                    </form></td>
+                      @method('DELETE')
+                      <button class="btn btn-link" type="submit"><i class="bi bi-trash"></i></button>
+                    </form>
+                  </td>
                 </tr>
               </tbody>
           @endforeach
