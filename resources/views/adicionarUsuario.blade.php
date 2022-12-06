@@ -13,14 +13,14 @@
 @section('content')
   @auth
     @if (auth()->user()->admin === "admin")
-      <div id="formAdicionar" class="d-flex justify-content-center">
+      <div id="formAdicionar" class="d-flex justify-content-center pt-4 mt-5">
         <div class="col-12 col-md-6">
             <div class="p-5">
                 <form action="{{ route('cadastrar') }}" method="POST">
                     <div class="d-flex flex-column align-items-center">
                         <p class="fs-3">Cadastrar</p>
                         @csrf
-                        <div class="col-8">
+                        <div class="col-12">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nome</label>
                                 <input type="text" name="nome" class="form-control" id="exampleInputEmail1"
