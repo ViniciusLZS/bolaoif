@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Aposta;
+use Illuminate\Support\Facades\Auth;
 
 class ListaUsuarioController extends Controller
 {
@@ -16,7 +18,8 @@ class ListaUsuarioController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        return view('listarUsuarios', compact('usuarios'));
+        $apostas = Aposta::all();
+        return view('listarUsuarios', ["usuarios" => $usuarios, "apostas" => $apostas]);
     }
 
     /**
