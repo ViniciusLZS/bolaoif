@@ -51,7 +51,9 @@
                   <th scope="row">{{ $usuario->id }}</th>
                   <td>{{ $usuario->nome }}</td>
                   <td>{{ $usuario->email }}</td>
-                  <td>{{ $usuario->email }}</td>
+
+                  <td>{{ $usuario->apostas()->count() }}</td>
+
                   <td>{{ $usuario->created_at }}</td>
 
                   <td class="align-middle"><a href="#" onclick="editar_aposta({{ $usuario }})"title="editar"><i class="bi bi-pencil-square"></i></a></td>
