@@ -16,6 +16,21 @@
                         <li class="nav-item">
                             <a class="nav-link {{ $page == 'apostas' ? 'active' : ''}}" href="{{ route('apostas') }}">Minhas Apostas</a>
                         </li>
+                        @if (auth()->user()->admin === "admin")
+                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Usuários
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-light">
+                                            <li><a class="dropdown-item " href="{{ route('adicionarUser') }}">Adicionar usuários</a></li>
+                                            <li><a class="dropdown-item">Listar usuários</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
                     @endauth
                 </ul>
                 <form class="d-flex" role="search">
@@ -33,3 +48,6 @@
         </div>
     </nav>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
