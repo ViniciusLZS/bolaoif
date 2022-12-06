@@ -41,6 +41,7 @@ class LoginController extends Controller
         $usuario = new User();
         $usuario->nome = $request->nome;
         $usuario->email = $request->email;
+        $usuario->admin = '';
         $usuario->password = Hash::make($request->password);
         $usuario->save();
 

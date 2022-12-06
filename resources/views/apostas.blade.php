@@ -67,9 +67,11 @@
                                                 alt="{{ $aposta->jogo->time_1 }}">
                                             <span class="text-center fw-semibold">{{ $aposta->jogo->time_2 }}</span>
                                         </div>
-                                        <div class="d-flex flex-column">
+                                        <div class="d-flex flex-column gap-3">
+
                                             <a href="#" onclick="editar_aposta({{ $aposta }})"
                                                 title="editar"><i class="bi bi-pencil-square"></i></a>
+
                                             <form id="form-deletar" action="{{route('apostas.destroy', [$aposta->id])}}" method="post">
                                                 @csrf
                                                 @method('delete')
@@ -143,7 +145,6 @@
 @section('script')
     <script>
         const editar_aposta = (aposta) => {
-            console.log("aposta", aposta);
             let content = `<div class="col-12">
                                 <div class="card p-3 mb-3">
                                     <div class=" d-flex justify-content-evenly align-items-center h-100">
