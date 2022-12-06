@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide pt-4 mt-5" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ url('assets/img/banner1.webp') }}" class="d-block w-100" alt="banner 1">

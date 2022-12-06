@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApostaController;
 use App\Http\Controllers\AdicionarUser;
+use App\Http\Controllers\ListarUsuario;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,7 @@ Route::post('/cadastrar', [LoginController::class, 'cadastrar'])->name('cadastra
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
+
 Route::get('/adicionarUsuario', [AdicionarUser::class, 'index'])->name('adicionarUser')->middleware('auth');
+
+Route::get('/listarUsuario', [ListarUsuario::class, 'index'])->name('listarUsuario')->middleware('auth');

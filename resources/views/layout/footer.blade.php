@@ -1,5 +1,5 @@
 <section id="rodape">
-    <div class="row h-100">
+    <div class="row h-100 m-0">
         <div class="col-12 d-flex flex-column justify-content-center">
             <p class="text-center">Desenvolvido pelo IF - {{ date('Y') }}</p>
         </div>

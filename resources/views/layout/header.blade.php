@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Bolão do IF</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -24,8 +24,8 @@
                                             Usuários
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-light">
-                                            <li><a class="dropdown-item " href="{{ route('adicionarUser') }}">Adicionar usuários</a></li>
-                                            <li><a class="dropdown-item">Listar usuários</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('adicionarUser') }}">Adicionar usuários</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('listarUsuario') }}">Listar usuários</a></li>
                                         </ul>
                                     </li>
                                 </ul>
