@@ -24,21 +24,21 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nome</label>
                                 <input type="text" name="nome" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                    aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">E-mail</label>
                                 <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                    aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Senha</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Confirmar Senha</label>
                                 <input type="password" name="confirma_senha" class="form-control"
-                                    id="exampleInputPassword1">
+                                    id="exampleInputPassword1" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
