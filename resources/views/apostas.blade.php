@@ -99,40 +99,37 @@
                                 </div>
                             @endforeach
                         @endif
-                        @foreach ($jogos as $jogo)
-                            {{-- @foreach (Auth::user()->apostas as $aposta)
-                                @if($jogo->id == $aposta->jogo_id) --}}
-                                    <div class="col-12">
-                                        <div class="card p-3 mb-3">
-                                            <form action="{{ route('apostas.store') }}" method="POST">
-                                                <div class="card-body d-flex flex-column justify-content-center">
-                                                    @csrf
-                                                    <div class="d-flex justify-content-evenly align-items-center h-100">
-                                                        <div class="time d-flex flex-column align-items-center">
-                                                            <img src='{{ url("assets/img/bandeiras/$jogo->bandeira_1") }}'
-                                                                alt="Tunísia">
-                                                            <span class="text-center fw-semibold">{{ $jogo->time_1 }}</span>
-                                                        </div>
-                                                        <input type="hidden" name="id" value="{{ $jogo->id }}">
-                                                        <input type="number" name="palpite_1" min="0"
-                                                            value="{{ $jogo->palpite_1 ?? '' }}">
-                                                        <span class="fs-3 text-secondary text-center fw-bold">7:00</span>
-                                                        <input type="number" name="palpite_2" min="0"
-                                                            value="{{ $jogo->palpite_2 ?? '' }}">
-                                                        <div class="time d-flex flex-column align-items-center">
-                                                            <img src='{{ url("assets/img/bandeiras/$jogo->bandeira_2") }}'
-                                                                alt="Austrália">
-                                                            <span class="text-center fw-semibold">{{ $jogo->time_2 }}</span>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit"
-                                                        class="btn-apostar btn btn-light w-30 mx-auto">Apostar R${{env('VALOR_APOSTA')}},00</button>
+                    
+                        @foreach ($jogos as $jogo) 
+                            <div class="col-12">
+                                <div class="card p-3 mb-3">
+                                    <form action="{{ route('apostas.store') }}" method="POST">
+                                        <div class="card-body d-flex flex-column justify-content-center">
+                                            @csrf
+                                            <div class="d-flex justify-content-evenly align-items-center h-100">
+                                                <div class="time d-flex flex-column align-items-center">
+                                                    <img src='{{ url("assets/img/bandeiras/$jogo->bandeira_1") }}'
+                                                        alt="Tunísia">
+                                                    <span class="text-center fw-semibold">{{ $jogo->time_1 }}</span>
                                                 </div>
-                                            </form>
+                                                <input type="hidden" name="id" value="{{ $jogo->id }}">
+                                                <input type="number" name="palpite_1" min="0"
+                                                    value="{{ $jogo->palpite_1 ?? '' }}">
+                                                <span class="fs-3 text-secondary text-center fw-bold">7:00</span>
+                                                <input type="number" name="palpite_2" min="0"
+                                                    value="{{ $jogo->palpite_2 ?? '' }}">
+                                                <div class="time d-flex flex-column align-items-center">
+                                                    <img src='{{ url("assets/img/bandeiras/$jogo->bandeira_2") }}'
+                                                        alt="Austrália">
+                                                    <span class="text-center fw-semibold">{{ $jogo->time_2 }}</span>
+                                                </div>
+                                            </div>
+                                            <button type="submit"
+                                                class="btn-apostar btn btn-light w-30 mx-auto">Apostar R${{env('VALOR_APOSTA')}},00</button>
                                         </div>
-                                    </div>
-                                {{-- @endif
-                            @endforeach --}}
+                                    </form>
+                                </div>
+                            </div> 
                         @endforeach
                         <div class="row px-3">
                             <div class="col-12 d-flex flex-column align-items-center">
