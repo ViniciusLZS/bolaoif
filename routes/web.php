@@ -63,6 +63,7 @@ Route::post('/listaJogos/update', [ListarJogosController::class, 'update'])->nam
 Route::resource('listaUsuario', ListarJogosController::class)->except(['update']);
 
 //Routes Lista de Apostas
+
 Route::post('/listarAposta/update', [ListarApostaController::class, 'update'])->name('listarAposta.update')->middleware('auth');
 
 Route::resource('listarApostas', ListarApostaController::class)->except(['update']);
