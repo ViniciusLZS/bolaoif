@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Aposta;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ListaUsuarioController extends Controller
 {
@@ -83,9 +82,14 @@ class ListaUsuarioController extends Controller
                 'required' => 'O campo :attribute é obrigatório.',
             ]
         )->validate();
+        
+        if ($request->password !== $request->confirma_senha)
+            return back()->withErrors(["cadastro" => "Senha e Confirmar Senha não combinam!"]);
+            
         $usuario = User::find($request->id);
         $usuario->nome = $request->nome;
         $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
         $usuario->save();
         return back()->with("sucess", "Usuario atualizado com sucesso");
     }

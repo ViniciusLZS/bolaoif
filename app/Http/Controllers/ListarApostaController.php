@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aposta;
 use App\Models\Jogo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ListarJogosController extends Controller
+class ListarApostaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,7 @@ class ListarJogosController extends Controller
      */
     public function index()
     {
-        $jogos = Jogo::all();
-        return view('listarJogos', ["jogos" => $jogos]);
+       // 
     }
 
     /**
@@ -26,7 +27,7 @@ class ListarJogosController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -57,9 +58,13 @@ class ListarJogosController extends Controller
      * @param  \App\Models\Jogo  $jogo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jogo $jogo)
+    public function edit($id)
     {
-        //
+        $usuario = User::all();
+        $jogos = Jogo::all();
+        $apostas = Aposta::all();
+        return view('listarApostas', ["jogos" => $jogos, 'apostas' => $apostas, 'id' => $id, 'usuarios' =>$usuario]);
+    
     }
 
     /**
@@ -71,29 +76,23 @@ class ListarJogosController extends Controller
      */
     public function update(Request $request, Jogo $jogo)
     {
+        Validator::make(
+            $request->all(),
+            [
         
-            Validator::make(
-                $request->all(),
-                [
-                    'time_1' => 'required|string',
-                    'time_2' => 'required|string',
-                    'bandeira_1' => 'required|string',
-                    'bandeira_2' => 'required|string',
+                'palpite_1' => 'required|numeric',
+                'palpite_2' => 'required|numeric',
                     
-                ],
-                [
-                    'required' => 'O campo :attribute é obrigatório.',
-                ]
-            )->validate();
-            $jogo = Jogo::find($request->id);
-            $jogo->time_1 = $request->time_1;
-            $jogo->time_2 = $request->time_2;
-            $jogo->bandeira_1 = $request->bandeira_1;
-            $jogo->bandeira_2 = $request->bandeira_2;
-            $jogo->placar_1 = $request->placar_1;
-            $jogo->placar_2 = $request->placar_2;
-            $jogo->save();
-            return back()->with("sucess", "Jogo atualizado com sucesso");
+            ],
+            [
+                'required' => 'O campo :attribute é obrigatório.',
+            ]
+        )->validate();
+        $aposta = Aposta::find($request->id);
+        $aposta->palpite_1 = $request->palpite_1;
+        $aposta->palpite_2 = $request->palpite_2;
+        $aposta->save();
+        return back()->with("sucess", "Aposta atualizada com sucesso");
     }
 
     /**
@@ -104,7 +103,7 @@ class ListarJogosController extends Controller
      */
     public function destroy($id)
     {
-        Jogo::destroy($id);
-        return back()->with("sucess", "Jogo removido com sucesso");
+        Aposta::destroy($id);
+        return back()->with("sucess", "Aposta removida com sucesso");
     }
 }

@@ -32,9 +32,30 @@
         </div>
     </div>
   </div>
+  <div class="position-fixed top-20 start-0">
+    @if ($errors->all())
+      @foreach ($errors->all() as $message)
+          <div class="col-12">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ $message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"
+                      aria-label="Close"></button>
+              </div>
+          </div>
+      @endforeach
+    @endif
+    @if (session('sucess'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            {{ session('sucess') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                aria-label="Close"></button>
+        </div>
+    @endif
+  </div>
   @auth
     @if (auth()->user()->admin === "admin")
       <section class="container pt-4 mt-5">
+        <h1 class="m-5">Lista de jogos</h1>
         <table class="table">
           <thead>
             <tr class="text-center">
@@ -44,7 +65,9 @@
               <th scope="col">Placar</th>
               <th scope="col">Qtd. de apostas</th>
               <th scope="col">Criação da aposta</th>
-              <th scope="col">Aposta</th>
+              <th scope="col">Lista de Aposta</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Deletar</th>
             </tr>
           </thead>
           @foreach ($jogos as $jogo)
@@ -71,7 +94,12 @@
 
                   <td class="align-middle">{{ $jogo->created_at }}</td>
 
-                  <td class="align-middle"><a href="">Link</a></td>
+                  <td class="align-middle">
+                    <form class="d-flex justify-content-center" id="form-deletar" action="{{route('listarApostas.edit', $jogo->id)}}" method="GET">
+                      @csrf
+                      <button class="btn btn-link" type="submit"><i class="bi bi-list-check"></i></i></button>
+                    </form>
+                  </td>
 
                   <td class="align-middle"><a href="#" onclick="editar_aposta({{ $jogo }})"title="editar"><i class="bi bi-pencil-square"></i></a></td>
 
