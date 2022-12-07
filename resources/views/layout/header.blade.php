@@ -17,19 +17,29 @@
                             <a class="nav-link {{ $page == 'apostas' ? 'active' : ''}}" href="{{ route('apostas') }}">Minhas Apostas</a>
                         </li>
                         @if (auth()->user()->admin === "admin")
-                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Usuários
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-light">
-                                            <li><a class="dropdown-item" href="{{ route('adicionarUser') }}">Adicionar usuários</a></li>
-                                            <li><a class="dropdown-item" href="{{ route('listarUsuario') }}">Listar usuários</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Usuários
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-light">
+                                        <li><a class="dropdown-item" href="{{ route('adicionarUser') }}">Adicionar usuários</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('listarUsuario') }}">Listar usuários</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Jogos
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-light">
+                                        <li><a class="dropdown-item" href="{{ route('adicionarJogos') }}">Adicionar jogos</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('listarJogos') }}">Listar Jogos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         @endif
                     @endauth
                 </ul>

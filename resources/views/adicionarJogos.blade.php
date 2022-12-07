@@ -4,9 +4,9 @@
     <link rel="stylesheet" href="{{ url('assets/css/adicionarUsuario.css') }}">
 @endsection
 
-@section('title', 'Adicionar usuário')
+@section('title', 'Adicionar Jogos')
 @php
-    $page = 'Adicionar usuário';
+    $page = 'Adicionar Jogos';
 @endphp
 
 
@@ -16,29 +16,39 @@
       <div id="formAdicionar" class="d-flex justify-content-center pt-4 mt-5">
         <div class="col-12 col-md-6">
             <div class="p-5">
-                <form action="{{ route('cadastrar') }}" method="POST">
+                <form action="{{ route('adicionarJogos.story') }}" method="POST">
                     <div class="d-flex flex-column align-items-center">
-                        <p class="fs-3">Cadastrar Usuário</p>
+                        <p class="fs-3">Cadastrar Jogo</p>
                         @csrf
                         <div class="col-12">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label for="exampleInputEmail1" class="form-label">Time 1</label>
+                                <input type="text" name="time_1" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">E-mail</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label for="exampleInputEmail1" class="form-label">Time 2</label>
+                                <input type="text" name="time_2" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Senha</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                <label for="exampleInputPassword1" class="form-label">Bandeira 1</label>
+                                <input type="text" name="bandeira_1" class="form-control" id="exampleInputPassword1" required>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Confirmar Senha</label>
-                                <input type="password" name="confirma_senha" class="form-control"
-                                    id="exampleInputPassword1">
+                                <label for="exampleInputPassword1" class="form-label">Bandeira 2</label>
+                                <input type="text" name="bandeira_2" class="form-control"
+                                    id="exampleInputPassword1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Placar 1</label>
+                                <input type="text" name="placar_1" class="form-control"
+                                    id="exampleInputPassword1" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Placar 2</label>
+                                <input type="text" name="placar_2" class="form-control"
+                                    id="exampleInputPassword1" >
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Cadastrar</button>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aposta;
+use App\Models\Jogo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 
-class ListaUsuarioController extends Controller
+class ListarApostaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,7 @@ class ListaUsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = User::all();
-        return view('listarUsuarios', ["usuarios" => $usuarios]);
+       // 
     }
 
     /**
@@ -27,7 +27,7 @@ class ListaUsuarioController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -44,10 +44,10 @@ class ListaUsuarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Jogo  $jogo
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Jogo $jogo)
     {
         //
     }
@@ -55,54 +55,55 @@ class ListaUsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Jogo  $jogo
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $usuario = User::all();
+        $jogos = Jogo::all();
+        $apostas = Aposta::all();
+        return view('listarApostas', ["jogos" => $jogos, 'apostas' => $apostas, 'id' => $id, 'usuarios' =>$usuario]);
+    
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Jogo  $jogo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Jogo $jogo)
     {
         Validator::make(
             $request->all(),
             [
-                'nome' => 'required|string',
-                'email' => 'required|string',
+        
+                'palpite_1' => 'required|numeric',
+                'palpite_2' => 'required|numeric',
+                    
             ],
             [
                 'required' => 'O campo :attribute é obrigatório.',
             ]
         )->validate();
-        
-        if ($request->password !== $request->confirma_senha)
-            return back()->withErrors(["cadastro" => "Senha e Confirmar Senha não combinam!"]);
-            
-        $usuario = User::find($request->id);
-        $usuario->nome = $request->nome;
-        $usuario->email = $request->email;
-        $usuario->password = Hash::make($request->password);
-        $usuario->save();
-        return back()->with("sucess", "Usuario atualizado com sucesso");
+        $aposta = Aposta::find($request->id);
+        $aposta->palpite_1 = $request->palpite_1;
+        $aposta->palpite_2 = $request->palpite_2;
+        $aposta->save();
+        return back()->with("sucess", "Aposta atualizada com sucesso");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Jogo  $jogo
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return back()->with("sucess", "Usuario removido com sucesso");
+        Aposta::destroy($id);
+        return back()->with("sucess", "Aposta removida com sucesso");
     }
 }

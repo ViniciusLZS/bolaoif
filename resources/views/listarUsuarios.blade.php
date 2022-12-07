@@ -29,8 +29,36 @@
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
+            
         </div>
     </div>
+  </div>
+  <div class="position-fixed top-20 start-0">
+    @if ($errors->all())
+      @foreach ($errors->all() as $message)
+          <div class="col-12">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ $message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"
+                      aria-label="Close"></button>
+              </div>
+          </div>
+      @endforeach
+    @endif
+    @if ($errors->first('cadastro'))
+        <div class=" alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            {{ $errors->first('cadastro') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                aria-label="Close"></button>
+        </div>
+    @endif
+    @if (session('sucess'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            {{ session('sucess') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                aria-label="Close"></button>
+        </div>
+    @endif
   </div>
   @auth
     @if (auth()->user()->admin === "admin")
@@ -89,6 +117,16 @@
                                 <input type="email" value="${usuario.email}" name="email" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                               </div>
+
+                              <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Senha</label>
+                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Confirmar Senha</label>
+                                    <input type="password" name="confirma_senha" class="form-control"
+                                        id="exampleInputPassword1">
+                                </div>
                             </div>
                             `;
             $("#modal-aposta-content").html(content);

@@ -30,7 +30,7 @@ class LoginController extends Controller
 
         // verificar se o email já está cadastrado.
         $usuario = User::whereEmail($request->email)->first();
-        if ($usuario)
+        if ($usuario )
             return back()->withErrors(["cadastro" => "E-mail já cadastrado!"]);
 
         // verificar se as senhas combinam.

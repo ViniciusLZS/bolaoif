@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Jogo extends Model
 {
     use HasFactory;
+    public function apostas()
+    {
+        return $this->hasMany(Aposta::class);
+    }
 }

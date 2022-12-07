@@ -123,7 +123,7 @@
         <div class="container p-5">
             <div class="row">
                 @foreach ($jogos as $jogo)
-                    <div class="col-12 col-md-4 ">
+                    <div class="col-xl-4 col-lg-6 col-md-12 d-flex justify-content-around align-items-center">
                         <div class="card p-3 m-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-around align-items-center h-100">
