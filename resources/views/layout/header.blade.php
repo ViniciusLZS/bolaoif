@@ -16,6 +16,9 @@
                         <li class="nav-item">
                             <a class="nav-link {{ $page == 'apostas' ? 'active' : ''}}" href="{{ route('apostas') }}">Minhas Apostas</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ $page == 'config' ? 'active' : ''}}" href="{{ route('config') }}">Configurações</a>
+                        </li>
                         @if (auth()->user()->admin === "admin")
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">

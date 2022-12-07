@@ -151,13 +151,13 @@
 
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">placar 1</label>
-                                <input type="text" value="${jogo.placar_1}" name="placar_1" class="form-control" id="exampleInputEmail1"
+                                <input type="number" min="0" value="${jogo.placar_1}" name="placar_1" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                               </div>
 
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Placar 2</label>
-                                <input type="text" value="${jogo.placar_2}" name="placar_2" class="form-control" id="exampleInputEmail1"
+                                <input type="number" min="0" value="${jogo.placar_2}" name="placar_2" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                               </div>
                             </div>

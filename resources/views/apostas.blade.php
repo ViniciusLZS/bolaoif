@@ -69,13 +69,13 @@
                                         </div>
                                         <div class="d-flex flex-column gap-3">
 
-                                            <a href="#" onclick="editar_aposta({{ $aposta }})"
+                                            <a class="btn btn-link" href="#" onclick="editar_aposta({{ $aposta }})"
                                                 title="editar"><i class="bi bi-pencil-square"></i></a>
 
                                             <form id="form-deletar" action="{{route('apostas.destroy', [$aposta->id])}}" method="post">
                                                 @csrf
-                                                @method('delete')
-                                                <a href="javascript:{}" onclick="document.getElementById('form-deletar').submit();" title="deletar"><i class="bi bi-trash"></i></a>
+                                                @method('DELETE')
+                                                <button class="btn btn-link" type="submit"><i class="bi bi-trash"></i></button>
                                             </form>
                                         </div>
                                     </div>
@@ -99,7 +99,8 @@
                                 </div>
                             @endforeach
                         @endif
-                        @foreach ($jogos as $jogo)
+                    
+                        @foreach ($jogos as $jogo) 
                             <div class="col-12">
                                 <div class="card p-3 mb-3">
                                     <form action="{{ route('apostas.store') }}" method="POST">
@@ -128,7 +129,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> 
                         @endforeach
                         <div class="row px-3">
                             <div class="col-12 d-flex flex-column align-items-center">

@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApostaController;
 use App\Http\Controllers\AdicionarUser;
+use App\Http\Controllers\configuraçaoController;
 use App\Http\Controllers\ListarApostaController;
 use App\Http\Controllers\ListarJogosController;
 use App\Http\Controllers\ListarUsuario;
@@ -63,6 +64,15 @@ Route::post('/listaJogos/update', [ListarJogosController::class, 'update'])->nam
 Route::resource('listaUsuario', ListarJogosController::class)->except(['update']);
 
 //Routes Lista de Apostas
+
 Route::post('/listarAposta/update', [ListarApostaController::class, 'update'])->name('listarAposta.update')->middleware('auth');
 
 Route::resource('listarApostas', ListarApostaController::class)->except(['update']);
+
+//Route config
+Route::get('/config', [configuraçaoController::class, 'index'])->name
+('config')->middleware('auth');
+
+Route::post('/config/update', [configuraçaoController::class, 'update'])->name('config.update')->middleware('auth');
+
+Route::resource('configuracao', configuraçaoController::class)->except(['update']);
