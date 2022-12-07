@@ -30,6 +30,20 @@
                                     </li>
                                 </ul>
                             </div>
+                            
+                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Jogos
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-light">
+                                            <li><a class="dropdown-item" href="{{ route('adicionarJogos') }}">Adicionar jogos</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('listarJogos') }}">Listar Jogos</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         @endif
                     @endauth
                 </ul>

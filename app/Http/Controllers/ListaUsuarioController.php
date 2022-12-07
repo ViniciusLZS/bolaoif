@@ -18,8 +18,7 @@ class ListaUsuarioController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        $apostas = Aposta::all();
-        return view('listarUsuarios', ["usuarios" => $usuarios, "apostas" => $apostas]);
+        return view('listarUsuarios', ["usuarios" => $usuarios]);
     }
 
     /**
@@ -88,7 +87,7 @@ class ListaUsuarioController extends Controller
         $usuario->nome = $request->nome;
         $usuario->email = $request->email;
         $usuario->save();
-        return back()->with("sucess", "Usuario atualizada com sucesso");
+        return back()->with("sucess", "Usuario atualizado com sucesso");
     }
 
     /**

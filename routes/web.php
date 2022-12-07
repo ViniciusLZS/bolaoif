@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\addJogosController;
+use App\Http\Controllers\adicionarJogosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApostaController;
 use App\Http\Controllers\AdicionarUser;
+use App\Http\Controllers\ListarJogosController;
 use App\Http\Controllers\ListarUsuario;
 use App\Http\Controllers\ListaUsuarioController;
 
@@ -41,3 +44,17 @@ Route::get('/listarUsuario', [ListaUsuarioController::class, 'index'])->name
 Route::post('/listaUsuario/update', [ListaUsuarioController::class, 'update'])->name('listaUsuario.update')->middleware('auth');
 
 Route::resource('listaUsuario', ListaUsuarioController::class)->except(['update']);
+
+//Routes addJogos
+Route::get('/adicionarJogos', [addJogosController::class, 'index'])->name
+('adicionarJogos')->middleware('auth');
+
+Route::post('/adicionarJogos/story', [addJogosController::class, 'store'])->name('adicionarJogos.story');
+
+//Routes listar Jogos
+Route::get('/listarJogos', [ListarJogosController::class, 'index'])->name
+('listarJogos')->middleware('auth');
+
+Route::post('/listaJogos/update', [ListarJogosController::class, 'update'])->name('listaJogos.update')->middleware('auth');
+
+Route::resource('listaUsuario', ListarJogosController::class)->except(['update']);
