@@ -104,7 +104,7 @@
                   <td class="align-middle"><a href="#" onclick="editar_aposta({{ $jogo }})"title="editar"><i class="bi bi-pencil-square"></i></a></td>
 
                   <td class="align-middle">
-                    <form class="d-flex justify-content-center" id="form-deletar" action="{{route('listaUsuario.destroy', $jogo->id)}}" method="POST">
+                    <form class="d-flex justify-content-center" id="form-deletar" action="{{route('listaJogos.destroy', $jogo->id)}}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button class="btn btn-link" type="submit"><i class="bi bi-trash"></i></button>

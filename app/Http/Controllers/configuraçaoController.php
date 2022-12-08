@@ -102,7 +102,9 @@ class configuraçaoController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        $user = User::find($id);
+        $user->apostas()->delete();
+        $user->delete();
         return back()->with("sucess", "Usuario removido com sucesso");
     }
 }
