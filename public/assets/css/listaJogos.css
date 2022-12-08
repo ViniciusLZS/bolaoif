@@ -1,8 +1,26 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 img {
   border-radius: 45px;
   width: 45px;
   height: 45px;
   object-fit: cover;
+}
+
+.erro {
+  position: fixed;
+  top: 50;
 }
 
 .btn-primary,

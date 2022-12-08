@@ -29,11 +29,10 @@
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
             </form>
-            
         </div>
     </div>
   </div>
-  <div class="position-fixed top-20 start-0">
+  <div class="erro">
     @if ($errors->all())
       @foreach ($errors->all() as $message)
           <div class="col-12">
@@ -45,13 +44,7 @@
           </div>
       @endforeach
     @endif
-    @if ($errors->first('cadastro'))
-        <div class=" alert alert-danger alert-dismissible fade show mt-3" role="alert">
-            {{ $errors->first('cadastro') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                aria-label="Close"></button>
-        </div>
-    @endif
+  
     @if (session('sucess'))
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             {{ session('sucess') }}

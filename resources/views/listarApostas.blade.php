@@ -32,7 +32,7 @@
         </div>
     </div>
   </div>
-  <div class="position-fixed top-20 start-0">
+  <div class="erro">
     @if ($errors->all())
       @foreach ($errors->all() as $message)
           <div class="col-12">
