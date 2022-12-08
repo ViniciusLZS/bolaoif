@@ -61,7 +61,7 @@ Route::get('/listarJogos', [ListarJogosController::class, 'index'])->name
 
 Route::post('/listaJogos/update', [ListarJogosController::class, 'update'])->name('listaJogos.update')->middleware('auth');
 
-Route::resource('listaUsuario', ListarJogosController::class)->except(['update']);
+Route::resource('listaJogos', ListarJogosController::class)->except(['update']);
 
 //Routes Lista de Apostas
 

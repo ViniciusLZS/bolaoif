@@ -46,12 +46,12 @@
                         @endif
                     @endauth
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex m-0" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 @auth
-                    <form class="d-flex ms-3" action="{{ route('logout') }}" method="GET">
+                    <form class="d-flex ms-3 mb-0" action="{{ route('logout') }}" method="GET">
                         @csrf
                         <button class="btn btn-outline-success" type="submit">Sair</button>
                     </form>

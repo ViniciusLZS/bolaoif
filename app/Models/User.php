@@ -48,6 +48,6 @@ class User extends Authenticatable
      */
     public function apostas()
     {
-        return $this->hasMany(Aposta::class);
+        return $this->hasMany(Aposta::class, 'user_id', 'id');
     }
 }
